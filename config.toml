@@ -1,0 +1,21 @@
+[[db_servers]]
+name = "Localhost"
+conn_string_variable = "Localhost_DBCONN"
+
+[[db_servers]]
+name = "Localhost2"
+conn_string_variable = "Localhost2_DBCONN"
+
+[[db_queries]]
+name = "StatsMaintenance"
+query = '''
+EXECUTE dbo.IndexOptimize
+@Databases = 'MyDb',
+@FragmentationLow = NULL,
+@FragmentationMedium = NULL,
+@FragmentationHigh = NULL,
+@UpdateStatistics = 'ALL',
+@LogToTable = 'Y';
+'''
+schedule = "*/1 * * * *"
+server = "Localhost"
